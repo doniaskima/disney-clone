@@ -1,34 +1,23 @@
 import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
+import { selectOriginal } from "../features/movie/movieSlice";
+import { useSelector } from "react-redux";
 function Originals() {
+  const movies = useSelector(selectOriginal);
   return (
     <Container>
-      <h4> originals </h4>
+      <h4>New to Disney+</h4>
       <Content>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://www.rtl.fr/culture/cine-series/disney-pourquoi-peter-pan-les-aristochats-et-dumbo-ont-ete-interdits-aux-enfants-7800960649"
-              alt="girls"
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" />
-          </Link>
-        </Wrap>
+        {movies &&
+          movies.map((movie, key) => (
+            <Wrap key={key}>
+              {movie.id}
+              <Link to={`/detail/` + movie.id}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Link>
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
