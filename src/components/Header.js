@@ -19,7 +19,7 @@ const Header = (props) => {
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setUser(user);
+        setUser(user); //if the user exist make the user the user
         
       }
     });
